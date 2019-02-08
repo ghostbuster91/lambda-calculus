@@ -28,4 +28,6 @@ object Lists {
   def lMap: F = list => f => lReverse(fold(list)(acc => item => add(acc)(f(item)))(emptyList))
 
   def lReverse: F = list => fold(list)(acc => item => add(acc)(item))(emptyList)
+
+  def contains: F = list => predicate => Numbers.lessOrEq(Numbers.One)(Lists.lSize(Lists.lFilter(list)(predicate)))
 }

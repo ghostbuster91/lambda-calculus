@@ -100,5 +100,11 @@ class ListsTest extends FlatSpec with Matchers {
     val result = lSize(lAdd(list1)(list2))
     isEq(result)(plus(four)(four)) shouldBe True
   }
+
+  "list" should "contain elements" in {
+    val list1 = add(emptyList)(Three)
+    contains(list1)(item => isEq(item)(Three)) shouldBe True
+    contains(list1)(item => isEq(item)(Two)) shouldBe False
+  }
 }
 
