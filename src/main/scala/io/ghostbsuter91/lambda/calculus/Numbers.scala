@@ -17,11 +17,11 @@ object Numbers {
 
   def mult: F =  m => n => f => m(n(f))
 
-  def sub: F =  m => n => n(prev)(m)
+  def minus: F = m => n => n(prev)(m)
 
   def isZero: F =  n => n(_ => Booleans.False)(Booleans.True)
 
-  def lessOrEq: F =  m => n => isZero(sub(m)(n))
+  def lessOrEq: F =  m => n => isZero(minus(m)(n))
 
   def isEq: F = m => n => Booleans.and(lessOrEq(m)(n))(lessOrEq(n)(m))
 }

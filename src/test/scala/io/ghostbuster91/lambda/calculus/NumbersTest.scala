@@ -38,4 +38,20 @@ class NumbersTest extends FlatSpec with Matchers {
     isEq(One)(Two) shouldBe False
     isEq(next(One))(prev(Three)) shouldBe True
   }
+
+  "plus" should "work" in {
+    isEq(plus(One)(One))(Two) shouldBe True
+    isEq(plus(One)(Zero))(One) shouldBe True
+    isEq(plus(Zero)(Zero))(Zero) shouldBe True
+    isEq(plus(Zero)(One))(One) shouldBe True
+    isEq(plus(Two)(One))(Three) shouldBe True
+  }
+
+  "minus" should "work" in {
+    isEq(minus(One)(One))(Zero) shouldBe True
+    isEq(minus(One)(Zero))(One) shouldBe True
+    isEq(minus(Two)(One))(One) shouldBe True
+    isEq(minus(Three)(One))(Two) shouldBe True
+    isEq(minus(Two)(Two))(Zero) shouldBe True
+  }
 }
