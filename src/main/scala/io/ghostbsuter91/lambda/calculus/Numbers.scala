@@ -5,15 +5,15 @@ object Numbers {
   val _value: F = x => _ => x
   val _isPositive: F = _ => y => y
 
-  val Zero: F = toNumber(Naturals.Zero)
-  val One: F = toNumber(Naturals.One)
-  val Two: F = toNumber(Naturals.Two)
-  val Three: F = toNumber(Naturals.Three)
-  val nOne: F = negative(One)
-  val nTwo: F = negative(Two)
-  val nThree: F = negative(Three)
+  val pZero: F = toNumber(Naturals.Zero)
+  val pOne: F = toNumber(Naturals.One)
+  val pTwo: F = toNumber(Naturals.Two)
+  val pThree: F = toNumber(Naturals.Three)
+  val nOne: F = negative(pOne)
+  val nTwo: F = negative(pTwo)
+  val nThree: F = negative(pThree)
 
-  def negative: F = m => isZero(m)(Zero)(n => n(m(_value))(Booleans.neg(m(_isPositive))))
+  def negative: F = m => isZero(m)(pZero)(n => n(m(_value))(Booleans.neg(m(_isPositive))))
 
   def isZero: F = n => Naturals.isZero(n(_value))
 
@@ -27,7 +27,7 @@ object Numbers {
 
   private def signOfGreater: F = m => n => isAbsEq(m)(n)(Booleans.True)(Naturals.lessOrEq(m(_value))(n(_value))(n(_isPositive))(m(_isPositive)))
 
-  def prev: F = n => minus(n)(One)
+  def prev: F = n => minus(n)(pOne)
 
   def isEq: F = m => n => Booleans.and(Naturals.isEq(m(_value))(n(_value)))(Booleans.xor(m(_isPositive))(n(_isPositive)))
 
