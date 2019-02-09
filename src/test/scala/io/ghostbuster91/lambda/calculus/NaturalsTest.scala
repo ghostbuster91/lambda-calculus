@@ -62,4 +62,12 @@ class NaturalsTest extends FlatSpec with Matchers {
     isEq(mult(Zero)(Two))(Zero) shouldBe True
     isEq(mult(Two)(Zero))(Zero) shouldBe True
   }
+
+  "distance" should "work" in {
+    isEq(distance(Three)(One))(Two) shouldBe True
+    isEq(distance(Three)(Two))(One) shouldBe True
+    isEq(distance(Three)(Three))(Zero) shouldBe True
+    isEq(distance(Two)(Three))(One) shouldBe True
+    isEq(distance(One)(Three))(Two) shouldBe True
+  }
 }

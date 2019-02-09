@@ -24,4 +24,6 @@ object Naturals {
   def lessOrEq: F =  m => n => isZero(minus(m)(n))
 
   def isEq: F = m => n => Booleans.and(lessOrEq(m)(n))(lessOrEq(n)(m))
+
+  def distance: F = m => n => lessOrEq(m)(n)(minus(n)(m))(minus(m)(n))
 }
