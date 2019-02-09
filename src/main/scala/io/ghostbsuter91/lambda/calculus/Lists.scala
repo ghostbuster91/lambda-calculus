@@ -1,7 +1,7 @@
 package io.ghostbsuter91.lambda.calculus
 
 import io.ghostbsuter91.lambda.calculus.Booleans.{False, True}
-import io.ghostbsuter91.lambda.calculus.Numbers.{One, Zero, plus}
+import io.ghostbsuter91.lambda.calculus.Naturals.{One, Zero, plus}
 
 object Lists {
 
@@ -29,5 +29,5 @@ object Lists {
 
   def lReverse: F = list => fold(list)(acc => item => add(acc)(item))(emptyList)
 
-  def contains: F = list => predicate => Numbers.lessOrEq(Numbers.One)(Lists.lSize(Lists.lFilter(list)(predicate)))
+  def contains: F = list => predicate => Naturals.lessOrEq(Naturals.One)(Lists.lSize(Lists.lFilter(list)(predicate)))
 }

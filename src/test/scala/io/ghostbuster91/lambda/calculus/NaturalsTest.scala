@@ -1,10 +1,10 @@
 package io.ghostbuster91.lambda.calculus
 
-import io.ghostbsuter91.lambda.calculus.Numbers._
+import io.ghostbsuter91.lambda.calculus.Naturals._
 import io.ghostbsuter91.lambda.calculus.Booleans._
 import org.scalatest.{FlatSpec, Matchers}
 
-class NumbersTest extends FlatSpec with Matchers {
+class NaturalsTest extends FlatSpec with Matchers {
 
   "isZero" should "work" in {
     isZero(Zero) shouldBe True
@@ -54,4 +54,6 @@ class NumbersTest extends FlatSpec with Matchers {
     isEq(minus(Three)(One))(Two) shouldBe True
     isEq(minus(Two)(Two))(Zero) shouldBe True
   }
+
+  "negative"
 }

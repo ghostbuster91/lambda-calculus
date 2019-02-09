@@ -1,6 +1,6 @@
 package io.ghostbsuter91.lambda.calculus
 
-object Numbers {
+object Naturals {
   def Zero: F = _ => F.Identity
 
   def One: F =  f => x => f(x)

@@ -1,7 +1,7 @@
 package io.ghostbsuter91.lambda.calculus
 
 import io.ghostbsuter91.lambda.calculus.F._
-import io.ghostbsuter91.lambda.calculus.Numbers._
+import io.ghostbsuter91.lambda.calculus.Naturals._
 
 object Recursive {
 

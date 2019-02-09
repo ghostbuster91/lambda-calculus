@@ -1,7 +1,7 @@
 package io.ghostbuster91.lambda.calculus
 
 import io.ghostbsuter91.lambda.calculus.Booleans
-import io.ghostbsuter91.lambda.calculus.Numbers._
+import io.ghostbsuter91.lambda.calculus.Naturals._
 import io.ghostbsuter91.lambda.calculus.Recursive._
 import org.scalatest.{FlatSpec, Matchers}
 
