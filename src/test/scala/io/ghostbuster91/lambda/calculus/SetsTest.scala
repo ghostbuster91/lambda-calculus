@@ -106,6 +106,10 @@ class SetsTest extends FlatSpec with Matchers {
     sContains(set)(item => isEq(item)(Two)) shouldBe False
   }
 
+  "emptyset" should "be equal to empty set" in {
+    sEq(emptySet)(emptySet)(isEq) shouldBe True
+  }
+
   "set equality" should "work" in {
     val set1 = add(add(emptySet)(Three)(isEq))(One)(isEq)
     val set2 = add(add(emptySet)(One)(isEq))(Three)(isEq)
@@ -151,6 +155,22 @@ class SetsTest extends FlatSpec with Matchers {
 
     sEq(sAdd(set1)(set2)(isEq))(expectedResult)(isEq) shouldBe True
     sEq(sFlatten(superSet)(isEq))(expectedResult)(isEq) shouldBe True
+  }
+
+  "intersect" should "return empty set when there are no common parts" in {
+    val set1 = add(add(emptySet)(One)(isEq))(Two)(isEq)
+    val set2 = add(add(emptySet)(Three)(isEq))(next(Three))(isEq)
+
+    sIntersect(set1)(set2)(isEq)(_isEmpty) shouldBe True
+  }
+
+  "intersect" should "work" in {
+    val set1 = add(add(emptySet)(One)(isEq))(Two)(isEq)
+    val set2 = add(add(emptySet)(Two)(isEq))(Three)(isEq)
+    val set3 = add(add(emptySet)(Two)(isEq))(One)(isEq)
+
+    sContains(sIntersect(set1)(set2)(isEq))(isEq(Two)) shouldBe True
+    isEq(sSize(sIntersect(set1)(set3)(isEq)))(Two) shouldBe True
   }
 }
 

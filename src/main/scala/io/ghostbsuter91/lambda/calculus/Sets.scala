@@ -23,7 +23,7 @@ object Sets {
 
   def sAdd: F = set1 => set2 => comp => fold(set2)(acc => item => add(acc)(item)(comp))(set1)
 
-  def sFilter: F = set => f => fold(set)(acc => item => FlowControl.ifLambda(f(item))(_ => addUnsafe(acc)(item))(_ => acc))(emptySet)
+  def sFilter: F = set => predicate => fold(set)(acc => item => FlowControl.ifLambda(predicate(item))(_ => addUnsafe(acc)(item))(_ => acc))(emptySet)
 
   def sMap: F = set => f => comp => fold(set)(acc => item => add(acc)(f(item))(comp))(emptySet)
 
@@ -32,4 +32,6 @@ object Sets {
   def sEq: F = set1 => set2 => comp => and(isEq(sSize(set1))(sSize(set2)))(fold(set1)(acc => item => and(acc)(sContains(set2)(comp(item))))(True))
 
   def sFlatten: F = set => comp => fold(set)(acc => item => sAdd(acc)(item)(comp))(emptySet)
+
+  def sIntersect: F = set1 => set2 => comp => sAdd(sFilter(set1)(item => sContains(set2)(comp(item))))(sFilter(set2)(item => sContains(set1)(comp(item))))(comp)
 }
