@@ -55,5 +55,11 @@ class NaturalsTest extends FlatSpec with Matchers {
     isEq(minus(Two)(Two))(Zero) shouldBe True
   }
 
-  "negative"
+  "mult" should "work" in {
+    isEq(mult(One)(One))(One) shouldBe True
+    isEq(mult(One)(Two))(Two) shouldBe True
+    isEq(mult(Two)(One))(Two) shouldBe True
+    isEq(mult(Zero)(Two))(Zero) shouldBe True
+    isEq(mult(Two)(Zero))(Zero) shouldBe True
+  }
 }
