@@ -2,10 +2,10 @@ package io.ghostbuster91.lambda.calculus
 
 import io.ghostbsuter91.lambda.calculus.Booleans
 import io.ghostbsuter91.lambda.calculus.Naturals._
-import io.ghostbsuter91.lambda.calculus.Recursive._
+import io.ghostbsuter91.lambda.calculus.Algos._
 import org.scalatest.{FlatSpec, Matchers}
 
-class Factorial extends FlatSpec with Matchers {
+class AlgosTest extends FlatSpec with Matchers {
 
   "factorial" should "work" in {
     isEq(factorial(Three))(next(next(next(Three)))) shouldBe Booleans.True
