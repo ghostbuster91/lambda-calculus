@@ -70,4 +70,9 @@ class NaturalsTest extends FlatSpec with Matchers {
     isEq(distance(Two)(Three))(One) shouldBe True
     isEq(distance(One)(Three))(Two) shouldBe True
   }
+
+  "pow" should "work" in {
+    val Eight = mult(mult(Two)(Two))(Two)
+    isEq(pow(Two)(Three))(Eight) shouldBe True
+  }
 }

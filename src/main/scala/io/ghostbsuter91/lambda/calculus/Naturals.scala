@@ -26,4 +26,8 @@ object Naturals {
   def isEq: F = m => n => Booleans.and(lessOrEq(m)(n))(lessOrEq(n)(m))
 
   def distance: F = m => n => lessOrEq(m)(n)(minus(n)(m))(minus(m)(n))
+
+  private def powFactory: F = r => m => n => FlowControl.ifLambda(isZero(n))(_ => One)(_ => mult(m)(r(m)(prev(n))))
+
+  def pow: F = F.Y(powFactory)
 }
