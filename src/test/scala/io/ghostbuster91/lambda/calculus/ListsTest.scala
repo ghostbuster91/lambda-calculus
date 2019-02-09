@@ -12,60 +12,60 @@ class ListsTest extends FlatSpec with Matchers {
     val list = add(emptyList)(One)
     val list2 = add(list)(Two)
 
-    emptyList(isEmpty) shouldBe True
-    isEq(list2(getValue))(Two) shouldBe True
-    isEq(list2(prevElement)(getValue))(One) shouldBe True
-    list2(isEmpty) shouldBe False
+    emptyList(_isEmpty) shouldBe True
+    isEq(list2(_value))(Two) shouldBe True
+    isEq(list2(_prev)(_value))(One) shouldBe True
+    list2(_isEmpty) shouldBe False
 
     val list3 = lMap(list2)(F.Identity)
-    isEq(list3(getValue))(Two) shouldBe True
-    isEq(list3(prevElement)(getValue))(One) shouldBe True
-    list3(prevElement)(prevElement)(isEmpty) shouldBe True
+    isEq(list3(_value))(Two) shouldBe True
+    isEq(list3(_prev)(_value))(One) shouldBe True
+    list3(_prev)(_prev)(_isEmpty) shouldBe True
   }
 
   "fold" should "map with complex function" in {
     val list = add(emptyList)(One)
     val list2 = add(list)(Two)
 
-    emptyList(isEmpty) shouldBe True
-    isEq(list2(getValue))(Two) shouldBe True
-    isEq(list2(prevElement)(getValue))(One) shouldBe True
-    list2(isEmpty) shouldBe False
+    emptyList(_isEmpty) shouldBe True
+    isEq(list2(_value))(Two) shouldBe True
+    isEq(list2(_prev)(_value))(One) shouldBe True
+    list2(_isEmpty) shouldBe False
 
     val plusOne: F = n => plus(n)(One)
     val list3 = lMap(list2)(plusOne)
 
-    isEq(list3(getValue))(Three) shouldBe True
-    list3(isEmpty) shouldBe False
-    isEq(list3(prevElement)(getValue))(Two) shouldBe True
-    list3(prevElement)(prevElement)(isEmpty) shouldBe True
+    isEq(list3(_value))(Three) shouldBe True
+    list3(_isEmpty) shouldBe False
+    isEq(list3(_prev)(_value))(Two) shouldBe True
+    list3(_prev)(_prev)(_isEmpty) shouldBe True
   }
 
   "fold" should "filter" in {
     val list = add(emptyList)(One)
     val list2 = add(list)(Two)
 
-    emptyList(isEmpty) shouldBe True
-    isEq(list2(getValue))(Two) shouldBe True
-    isEq(list2(prevElement)(getValue))(One) shouldBe True
-    list2(isEmpty) shouldBe False
+    emptyList(_isEmpty) shouldBe True
+    isEq(list2(_value))(Two) shouldBe True
+    isEq(list2(_prev)(_value))(One) shouldBe True
+    list2(_isEmpty) shouldBe False
 
     val isOne: F = n => isEq(n)(One)
     val list3 = lFilter(list2)(isOne)
 
-    isEq(list3(getValue))(One) shouldBe True
-    list3(isEmpty) shouldBe False
-    list3(prevElement)(isEmpty) shouldBe True
+    isEq(list3(_value))(One) shouldBe True
+    list3(_isEmpty) shouldBe False
+    list3(_prev)(_isEmpty) shouldBe True
   }
 
   "fold" should "sum elements" in {
     val list: F = add(emptyList)(One)
     val list2 = add(list)(Two)
 
-    emptyList(isEmpty) shouldBe True
-    isEq(list2(getValue))(Two) shouldBe True
-    isEq(list2(prevElement)(getValue))(One) shouldBe True
-    list2(isEmpty) shouldBe False
+    emptyList(_isEmpty) shouldBe True
+    isEq(list2(_value))(Two) shouldBe True
+    isEq(list2(_prev)(_value))(One) shouldBe True
+    list2(_isEmpty) shouldBe False
 
     val result = lSum(list2)
 
@@ -77,10 +77,10 @@ class ListsTest extends FlatSpec with Matchers {
     val list2 = add(list)(Two)
     val list3 = add(add(add(add(list2)(Two))(Two))(Two))(Three)
 
-    emptyList(isEmpty) shouldBe True
-    isEq(list2(getValue))(Two) shouldBe True
-    isEq(list2(prevElement)(getValue))(One) shouldBe True
-    list2(isEmpty) shouldBe False
+    emptyList(_isEmpty) shouldBe True
+    isEq(list2(_value))(Two) shouldBe True
+    isEq(list2(_prev)(_value))(One) shouldBe True
+    list2(_isEmpty) shouldBe False
 
     val result = lSize(list3)
 
@@ -103,8 +103,8 @@ class ListsTest extends FlatSpec with Matchers {
 
   "list" should "contain elements" in {
     val list1 = add(emptyList)(Three)
-    contains(list1)(item => isEq(item)(Three)) shouldBe True
-    contains(list1)(item => isEq(item)(Two)) shouldBe False
+    lContains(list1)(item => isEq(item)(Three)) shouldBe True
+    lContains(list1)(item => isEq(item)(Two)) shouldBe False
   }
 }
 

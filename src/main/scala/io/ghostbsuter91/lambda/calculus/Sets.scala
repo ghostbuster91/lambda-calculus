@@ -5,9 +5,9 @@ import io.ghostbsuter91.lambda.calculus.Naturals._
 
 object Sets {
 
-  val _value: F = Lists.getValue
-  val _prev: F = Lists.prevElement
-  val _isEmpty: F = Lists.isEmpty
+  val _value: F = Lists._value
+  val _prev: F = Lists._prev
+  val _isEmpty: F = Lists._isEmpty
 
   private val addUnsafe: F = list => elem => p => p(elem)(list)(False)
 
